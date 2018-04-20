@@ -1,0 +1,19 @@
+{
+	"settings": {
+		"total_images": 1,
+		"output_path": "output",
+		"filename": "sample_##index",
+		"zfill": true,
+		"format": "JPEG",
+		"quality": 100,
+		"background_color": "#000000",
+		"size": {
+			"width": 200,
+			"height": 200
+		},
+		"text": "(##width x ##height)",
+		"text_size": 20,
+		"text_color": "#FFFFFF",
+		"text_position": "center"
+	}
+}
