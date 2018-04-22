@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Py-image-generator settings configurator</title>
+    <meta name="description" content="A Python script to programatically generate a large number of images of various size"/>
+    <meta name="keywords" content="script,python,image,generator,config"/>
+
+    <!-- # Facebook Open Graph tags -->
+    <meta property="og:title" content="Py-image-generator settings configurator"/> 
+    <meta property="og:type" content="website"/> 
+    <meta property="og:url" content="http://awesomestsite.com/awesomest-projects/py-image-generator/"/> 
+    <meta property="og:image" content="http://awesomestsite.com/awesomest-projects/py-image-generator/images/running_py_image_generator_screenshot.png"/> 
+    <meta property="og:description" content="A Python script to programatically generate a large number of images of various size"/>
+
+    <!-- #LinkedIn tags -->
+    <meta property="linkedIn:title" content="Py-image-generator settings configurator"/>
+    <meta property="linkedIn:url" content="http://awesomestsite.com/awesomest-projects/ghost-backup-script/"/>
+    <meta property="linkedIn:image" content="http://awesomestsite.com/awesomest-projects/py-image-generator/images/running_py_image_generator_screenshot.png"/> 
+    <meta property="linkedIn:summary" content="A Python script to programatically generate a large number of images of various size"/>
+
+    <!-- css styles -->
+    <link href="//fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/base.min.css" />
+    <style>
+
+        /** Specific CSS  **/
+        .text-center {
+            text-align: center;
+        }
+
+        .config_form {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-align: center;
+            border: 1px solid #0000EE;
+        }
+
+        .config_form__block {
+            display: inline-block;
+            box-sizing: border-box;
+            width: 49%;
+            padding: 0.5em;
+            vertical-align: top;
+            text-align: left;
+        }
+        .config_form__block label {
+            display: inline-block;
+            width: 190px;
+            font-size: 0.9em;
+        }
+        .config_form__block input {
+            font-size: 0.9em;
+            margin-bottom: 0.3em;
+        }
+        .config_form__block select {
+            width: 160px;
+            margin-bottom: 0.3em;
+        }
+        .config_form__block textarea {
+            width: 100%;
+            height: 200px;
+            margin-top: 0.5em;
+            padding: 0.5em;
+            font-size: 0.9em;
+        }
+
+        .config_form__block input.invalid {
+            border: 1px solid #FF0000;
+        }
+
+        p.details {
+            margin: 0;
+            padding: 0;
+            font-size: 0.8em;
+            font-style: italic;
+        }
+
+        label.zfill {
+            width: auto;
+        }
+        input#zfill {
+            margin-bottom: 0;
+            vertical-align: middle;
+        }
+
+        p#copy_result {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        @media (max-width: 720px) {
+            .config_form__block {
+                width: 100%;
+            }
+            .config_form__block label {
+                width: 100%
+            }
+            .config_form__block input {
+                width: 100%;
+            }
+            .config_form__block select {
+                width: 100%;
+            }
+        }
+    </style>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+    <div class="main-container">
+        <!-- fork me on github -->
+        <a href="https://github.com/bbog/py-image-generator">
+            <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+        </a>
+
+        <!-- main header -->
+        <h1>Py-image-generator settings config</h1>
+        <hr/>
+
+        <p>A helpful tool for the lazy, this python scripts allows an easier backup of your Ghost blog(s) database. Check out the <a href="https://github.com/bbog/py-image-generator" title="Python Image Generator">Github page</a> for the code, my <a href="https://itsybitsybytes.com/" title="https://itsybitsybytes.com/py-image-generator">blog post</a> for some insights or just read the instructions on the <a href="http://awesomestsite.com/awesomest-projects/py-image-generator/">project page</a>.</p>
+
+        <hr>
+
+        <h2 id="automatic_config">Generate your config file</h2>
+
+        <p>Use the form below to get the code for your <i>config.json</i> file.</p>
+
+        <div id="config_generator">
+
+            <div class="config_form">
+
+                <div class="config_form__block">
+
+                    <h3>Script settings</h3>
+
+                    <!-- total_images -->
+                    <label>Total images:</label>
+                    <input id="total_images" type="text" placeholder="10">
+                    <br/>
+
+                    <!-- output_path -->
+                    <label>Output path:</label>
+                    <input id="output_path" type="text" placeholder="output" value="output">
+                    <br/>
+
+                    <!-- filename -->
+                    <label>Filename<sup>*</sup>:</label>
+                    <input id="filename" type="text" placeholder="image_##index" value="image_##index">
+                    <label class="zfill">Zfill</label>
+                    <input id="zfill" type="checkbox" checked>
+                    <p class="details"><sup>*</sup>"##index" will be automatically replaced with the image index (the first generated image has the index 0, the second has the index 1 and so on). Enabling zfill will automatically pad the index with zeroes, so if you have 100 images, for example, the index values will be 000, 001, 002, etc.</p>
+                    <br/>
+
+                    <!-- format -->
+                    <label>Format:</label>
+                    <select id="format">
+                        <option value="JPEG" selected>JPG</option>
+                        <option value="PNG">PNG</option>
+                    </select>
+                    <br/>
+
+                    <!-- quality -->
+                    <br/>
+                    <label>Quality</label>
+                    <input id="quality" type="range" min="0" max="100" value="90" step="1" onchange="updateQuality()" oninput="updateQuality()"> <span id="quality_value">90</span>
+                    <br/>
+                    <br/>
+
+                    <!-- background_color -->
+                    <label>Background color<sup>*</sup>:</label>
+                    <input id="background_color" type="text" placeholder="#000000" value="#000000">
+                    <p class="details"><sup>*</sup>Any color in hex format will do. If you want a random color, write "random" inside the input. If you want to randomly choose between a given set of colors, enter them in the input separated by a comma (eg. "#000000,#FFFFFF,#FF0000")</p>
+                    <br/>
+
+                    <!-- size.width -->
+                    <label>Image width<sup>*</sup>:</label>
+                    <input id="width" type="text" placeholder="100" value="200">
+                    <br/>
+                    <!-- size.height -->
+                    <label>Image height<sup>*</sup>:</label>
+                    <input id="height" type="text" placeholder="100" value="200">
+                    <br/>
+                    <!-- ratio -->
+                    <label>Image ratio<sup>*</sup>:</label>
+                    <input id="ratio" type="number">
+                    <br/>
+                    <p class="details"><sup>*</sup>For width and height you can either specify a value in pixels (eg. "100"), an interval of values (eg. "100-200" for any random value between 100 and 200) or a list of values separated by commas (eg. "100,200,300") from which a random value will be choosen. If you specify a ratio, you only need to fill a value for either Width or Height, with the missing size being determined automatically based on the given image ratio.</p>
+                    <br/>
+
+                    <!-- text -->
+                    <label>Text<sup>*</sup>:</label>
+                    <input id="text" type="text" placeholder="Image ##index (##width x ##height)" value="Image ##index">
+                    <p class="details"><sup>*</sup>The text that will be drawn on the image. "##index" will be automatically replaced with the image index, "##width" and "##height" with the width and height (in pixels) of the image.</p>
+                    <br/>
+
+                    <!-- text_size -->
+                    <label>Text size<sup>*</sup>:</label>
+                    <input id="text_size" type="number" value="20">
+                    <p class="details"><sup>*</sup>The font size in pixels of the text drawn on the image</p>
+                    <br/>
+
+                    <!-- text_color -->
+                    <label>Text color<sup>*</sup>:</label>
+                    <input id="text_color" type="text" placeholder="#FFFFFF" value="#FFFFFF">
+                    <p class="details"><sup>*</sup>Any color in hex format will do. If you want a random color, write "random" inside the input. If you want to randomly choose between a given set of colors, enter them in the input separated by a comma (eg. "#000000,#FFFFFF,#FF0000"). If you want to use the inverted value of the background image, for guaranteed contrast, write "invert" inside the input.</p>
+                    <br/>
+
+                    <!-- text_position -->
+                    <label>Text position:</label>
+                    <select id="text_position">
+                        <option value="top">Top</option>
+                        <option value="center">Center</option>
+                        <option value="bottom" selected>Bottom</option>
+                    </select>
+                    <br/>
+                </div>
+
+                <div class="config_form__block">
+
+                    <h3>Config file</h3>
+
+                    <p>
+                        Click on "Generate" to create your custom config file and then copy the code to <i>config.json</i>.
+                    </p>
+                    <div class="text-center">
+                        <button onclick="generateConfig()">Generate</button>
+                    </div>
+
+                    <div>
+                        <textarea id="config" onclick="copyConfig()"></textarea>
+                        <p id="copy_result">Text copied to clipboard!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <footer>Developed by <a href="http://bogdanbucur.eu">Bogdan BUCUR</a></footer>
+
+        <!-- js -->
+        <script>
+
+            var total_images_input     = document.getElementById('total_images'),
+                output_path_input      = document.getElementById('output_path'),
+                filename_input         = document.getElementById('filename'),
+                zfill_checkbox         = document.getElementById('zfill'),
+                format_select          = document.getElementById('format'),
+                quality_input          = document.getElementById('quality'),
+                background_color_input = document.getElementById('background_color')
+                width_input            = document.getElementById('width')
+                height_input           = document.getElementById('height')
+                ratio_input            = document.getElementById('ratio')
+                text_input             = document.getElementById('text')
+                text_size_input        = document.getElementById('text_size')
+                text_color_input       = document.getElementById('text_color')
+                text_position_select   = document.getElementById('text_position');
+
+            var quality_value = document.getElementById('quality_value');
+            function updateQuality () {
+                quality_value.innerHTML = quality_input.value;
+            }
+
+            var config_textarea = document.getElementById('config');
+            function validateFields () {
+
+                var fields_valid = true;
+
+                if (!simpleInputFieldValidation(total_images_input)) {
+                    fields_valid = false;
+                }
+
+                if (!simpleInputFieldValidation(output_path_input)) {
+                    fields_valid = false;
+                }
+
+                if (!simpleInputFieldValidation(filename_input)) {
+                    fields_valid = false;
+                }
+
+                if (!simpleInputFieldValidation(background_color_input)) {
+                    fields_valid = false;
+                }
+
+                var has_width_and_height = (width_input.value && height_input.value),
+                    has_width_and_ratio  = (width_input.value && ratio_input.value),
+                    has_height_and_ratio = (height_input.value && ratio_input.value);
+                if (has_width_and_height || has_width_and_ratio || has_height_and_ratio) {
+                    width_input.classList.remove('invalid');
+                    height_input.classList.remove('invalid');
+                    ratio_input.classList.remove('invalid');
+                } else {
+                    width_input.classList.add('invalid');
+                    height_input.classList.add('invalid');
+                    ratio_input.classList.add('invalid');
+                }
+
+                if (!simpleInputFieldValidation(text_color_input)) {
+                    fields_valid = false;
+                }
+
+
+                return fields_valid;
+            }
+
+            function simpleInputFieldValidation (input_field) {
+
+                if (!input_field.value) {
+                    input_field.classList.add('invalid');
+                    var valid = false;
+                } else {
+                    input_field.classList.remove('invalid');
+                    var valid = true;
+                }
+
+                return valid;
+            }
+
+            function generateConfig () {
+
+                if (!validateFields()) {
+                    config_textarea.value = 'Please fill all the required values in configurator form.';
+                    return;
+                }
+
+                var tab = '    ',
+                    settings_string = '{\n';
+                settings_string += tab + '"settings": {\n';
+
+
+                var total_images = total_images_input.value,
+                    output_path  = output_path_input.value,
+                    filename     = filename_input.value,
+                    zfill        = zfill_checkbox.checked,
+                    format       = format_select.value,
+                    quality      = quality_input.value;
+                settings_string += tab + tab + '"total_images": ' + total_images + ',\n';
+                settings_string += tab + tab + '"output_path": "' + output_path + '",\n';
+                settings_string += tab + tab + '"filename": "' + filename + '",\n';
+                settings_string += tab + tab + '"zfill": ' + zfill + ',\n';
+                settings_string += tab + tab + '"format": "' + format + '",\n';
+                settings_string += tab + tab + '"quality": ' + quality + ',\n';
+
+                var background_color = background_color_input.value;
+                if (background_color.indexOf(',') !== -1) {
+                    background_color = background_color.split(',');
+                } else {
+                    background_color = '"' + background_color + '"';
+                }
+                settings_string += tab + tab + '"background_color": ' + background_color + ',\n';
+
+
+                var ratio  = ratio_input.value,
+                    width  = width_input.value,
+                    height = height_input.value;
+                if (width.indexOf('-') !== -1) {
+                    width = '"' + width + '"';
+                }
+                if (height.indexOf('-') !== -1) {
+                    height = '"' + height + '"';
+                }
+                if (width.indexOf(',') !== -1) {
+                    width = width.split(',');
+                }
+                if (height.indexOf(',') !== -1) {
+                    height = height.split(',');
+                }
+                settings_string += tab + tab + '"size": {\n';
+                if (ratio) {
+                    settings_string += tab + tab + tab + '"ratio": ' + ratio + ',\n';
+                    if (width) {
+                        settings_string += tab + tab + tab + '"width": ' + width + ',\n';
+                    } else {
+                        settings_string += tab + tab + tab + '"height": ' + height + '\n';
+                    }
+                } else {
+                    settings_string += tab + tab + tab + '"width": ' + width + ',\n';
+                    settings_string += tab + tab + tab + '"height": ' + height + '\n';
+                }
+                settings_string += tab + tab + '},\n';
+
+
+                var text          = text_input.value,
+                    text_size     = text_size_input.value || 0,
+                    text_color    = text_color_input.value,
+                    text_position = text_position_select.value;
+                if (text_color.indexOf(',') !== -1) {
+                    text_color = text_color.split(',');
+                } else {
+                    text_color = '"' + text_color + '"';
+                }
+                settings_string += tab + tab + '"text": "' + text + '",\n';
+                settings_string += tab + tab + '"text_size": ' + text_size + ',\n';
+                settings_string += tab + tab + '"text_color": ' + text_color + ',\n';
+                settings_string += tab + tab + '"text_position": "' + text_position + '"\n';
+
+                settings_string += tab + '}\n';
+                settings_string += '}';
+
+                config_textarea.value = settings_string;
+            }
+
+            var copy_result = document.getElementById('copy_result'),
+                hide_copy_result_timeout;
+            function copyConfig () {
+
+                config_textarea.select();
+                if (document.execCommand('copy')) {
+
+                    copy_result.style.opacity = '1';
+
+                    var one_sec = 1000;
+                    if (hide_copy_result_timeout) {
+                        clearTimeout(hide_copy_result_timeout);
+                    }
+                    hide_copy_result_timeout = setTimeout(function () {
+                        copy_result.style.opacity = '0';
+                    }, 1.5 * one_sec);
+                }
+                
+            }
+        </script>
+    </div>
+</body>
