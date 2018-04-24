@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Python Image generating script</title>
+    <meta name="description" content="A Python script to programatically generate a large number of images of various size"/>
+    <meta name="keywords" content="script,python,image,generator"/>
+
+    <!-- # Facebook Open Graph tags -->
+    <meta property="og:title" content="Python Image generating script"/> 
+    <meta property="og:type" content="website"/> 
+    <meta property="og:url" content="http://awesomestsite.com/awesomest-projects/py-image-generator/"/> 
+    <meta property="og:image" content="images/running_py_image_generator_screenshot.png"/> 
+    <meta property="og:description" content="A Python script to programatically generate a large number of images of various size"/>
+
+    <!-- #LinkedIn tags -->
+    <meta property="linkedIn:title" content="Python Image generating script"/>
+    <meta property="linkedIn:url" content="http://awesomestsite.com/awesomest-projects/py-image-generator/"/>
+    <meta property="linkedIn:image" content="images/running_py_image_generator_screenshot.png"/> 
+    <meta property="linkedIn:summary" content="A Python script to programatically generate a large number of images of various size"/>
+
+    <!-- css styles -->
+    <link href="//fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/base.min.css" />
+    
+    <!-- code highlighting -->
+    <link rel="stylesheet" href="css/prism.coy.min.css">
+
+    <style type="text/css">
+        /** Specific CSS  **/
+        .text-center {
+            text-align: center;
+        }
+    </style>
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+    <div class="main-container">
+        <!-- fork me on github -->
+        <a href="https://github.com/bbog/py-image-generator">
+            <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+        </a>
+
+        <!-- main header -->
+        <h1>Python Image generating script</h1>
+        <hr/>
+
+        <p>A helpful tool for those in need of a large number of different images, with various sizes. Check out the <a href="https://github.com/bbog/py-image-generator" title="Python Image Generator">Github page</a> for the code, my <a href="https://itsybitsybytes.com/py-image-generator" title="Py Image Generator blog post">blog post</a> for some insights or just read the instructions below.</p>
+
+        <hr>
+
+        <!-- download -->
+        <h2>Download</h2>
+
+        <ul>
+            <li>
+                <a title="Python Image Generator" href="https://github.com/bbog/py-image-generator/archive/master.zip">Download master.zip</a>
+            </li>
+            <li>
+                <a title="Python Image Generator" href="https://github.com/bbog/py-image-generator/raw/master/generate.py">Download generate.py from Github</a>
+            </li>
+            <li>
+                <a title="Python Image Generator" href="generate.py">Download generate.py</a>
+            </li>
+        </ul>
+
+        <p></p>
+
+        
+
+        <!-- how to -->
+        <h2>How to use it</h2>
+
+        <p>
+            After you download the archive from Github or just the backup script itself, you have to configure the <i>config.json</i> file by hand or you can use the <a href="http://awesomestsite.com/awesomest-projects/py-image-generator/configurator/" title="Py Image Generator configurator">online configurator</a>.
+            <br>
+            All you have to do next is run <code>python generate.py</code>.
+        </p>
+
+        <!-- settings -->
+        <h2>Settings</h2>
+
+        <p>This is how the sample config file looks like:</p>
+
+        <pre>
+            <code class="language-js">{
+    "settings": {
+        "total_images": 1,
+        "output_path": "output",
+        "filename": "sample_##index",
+        "zfill": true,
+        "format": "JPEG",
+        "quality": 100,
+        "background_color": "#000000",
+        "size": {
+            "width": 200,
+            "height": 200,
+            "ratio": 1
+        },
+        "text": "(##width x ##height)",
+        "text_size": 20,
+        "text_color": "#FFFFFF",
+        "text_position": "center"
+    }
+}</code>
+        </pre>
+
+        <ul>
+            <li>
+                <strong>total_images</strong> refers to the number of images you wish to generate. Has to be an integer.
+            </li>
+            <li>
+                <strong>output_path</strong> refers to the folder where the generated images will be saved. The default value is "<i>output</i>". The folder must exist before running the script.
+            </li>
+            <li>
+                <strong>filename</strong> refers to name structure of the saved image. You can use the dynamic keyword <i>##index</i>, which will be automatically replaced with the image index (0 for the first image, 1 for the second, and so on). The file extenion will be added by the script, based on the <strong>format</strong> setting.
+            </li>
+            <li>
+                <strong>zfill</strong> refers to zero-padding the index mentioned above, so you can preserve the alphabetical order. For 100 images, their names will regularly be image_0, image_1, etc. With <strong>zfill</strong> set to <i>true</i> you will get image_000, image_001, etc. Has to be a boolean.
+            </li>
+            <li>
+                <strong>format</strong> refers to image format. The possible values are:
+                <br>
+                 - <strong>JPEG</strong>
+                <br>
+                 - <strong>PNG</strong>
+            </li>
+            <li>
+                <strong>quality</strong> refers to image quality, 0 for the lowest, 100 for the highest.
+            </li>
+            <li>
+                <strong>background_color</strong> refers to image's background color. The possible values are:
+                <br>
+                 - a hex color (ex. "<i>#000000</i>")
+                <br>
+                 - a list of possible colors from which a random value will be chosen (ex. "<i>#FF0000,#00FF00,#0000FF</i>") 
+                <br>
+                 - "<i>random</i>", where a random color will be generated by the script.
+            </li>
+            <li>
+                <strong>size</strong> refers to the image size object. It has three possible cases:
+                <br>
+                 - you specify a <strong>width</strong> and a <strong>height</strong>
+                <br>
+                 - you specify a <strong>width</strong> and a <strong>ratio</strong>
+                <br>
+                 - you specify a <strong>height</strong> and a <strong>ratio</strong>
+                <br>
+                The <strong>ratio</strong> can be a float value. For <strong>width</strong> and <strong>height</strong>, you can use three possible values:
+                <br>
+                 - an integer value corresponding to a size in pixels (ex. <i>100</i>)
+                <br>
+                 - an integer interval from which a random value will be chosen for each image (ex. "<i>100-200</i>" for a random value between and including 100 and 200)
+                 <br>
+                 - an array of integer values in pixels, from which a random value will be chose for each image (ex. <i>100,200,300</i>)
+            </li>
+            <li>
+                <strong>text</strong> refers to the text written on the image (optional). On top of the "##index" keyword detailed for <strong>filename</strong>, you can also use here "<i>##width</i>" and "<i>##height</i>", corresponding to the width and height of the image (in pixels).
+            </li>
+            <li>
+                <strong>text_size</strong> refers to the font size in pixels of the text written on the image. Has to be an integer.
+            </li>
+            <li>
+                <strong>text_color</strong> refers to color of the text written on the image. The possible values are:
+                <br>
+                 - a hex color (ex. "<i>#000000</i>")
+                <br>
+                 - a list of possible colors from which a random value will be chosen (ex. "<i>#FF0000,#00FF00,#0000FF</i>") 
+                <br>
+                 - "<i>random</i>", where a random color will be generated by the script.
+                <br>
+                - "<i>invert</i>", where the script will use the inverted version of the background color, for a guaranteed contrast.
+            </li>
+            <li>
+                <strong>text_position</strong> refers to the position of the text written on the image. The possible values are:
+                <br>
+                 - <strong>top</strong>
+                <br> 
+                 - <strong>center</strong>
+                <br>
+                 - <strong>bottom</strong>
+                <br>
+                Comes with a 10 pixels margin.
+            </li>
+        </ul>
+
+
+        <!-- instructions -->
+        <h2>Running the script</h2>
+
+        <p>
+            Open a terminal window and navigate to the location of the <i>generate.py</i> file. Then run <code>python generate.py</code> and watch the magic happen!
+            <br/>
+            <a class="thumb_link" href="images/running_py_image_generator_screenshot.png" target="_blank" title="py-image-generator script screenshot"><img src="images/running_py_image_generator_screenshot.png" alt="py-image-generator script screenshot"/></a>
+        </p>
+
+        <hr>
+
+        <footer>Developed by <a href="http://bogdanbucur.eu">Bogdan BUCUR</a></footer>
+
+        <!-- code highlighting -->
+        <script src="js/prism.min.js"></script>
+    </div>
+</body>
