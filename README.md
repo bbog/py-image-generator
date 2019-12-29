@@ -2,8 +2,8 @@
 A Python script that allows you to automatically generate test images.
 
 ## Project page
-- [Py Image Generator](http://awesomestsite.com/awesomest-projects/py-image-generator/) project page
-- [Py Image Generator online configurator](http://awesomestsite.com/awesomest-projects/py-image-generator/configurator)
+- [Py Image Generator](https://dev.bogdanbucur.eu/awesomest-projects/py-image-generator/) project page
+- [Py Image Generator online configurator](https://dev.bogdanbucur.eu/awesomest-projects/py-image-generator/configurator)
 - [What do you do when you need a large number of different images with various sizes? You make a Python script](https://itsybitsybytes.com/py-image-generator/) (blog post)
 
 ## Instructions
